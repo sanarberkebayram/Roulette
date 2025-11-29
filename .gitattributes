@@ -1,0 +1,70 @@
+# Core defaults
+* text=auto eol=lf
+
+# Unity YAML assets (enable Smart Merge / UnityYAMLMerge)
+# Note: configure your Git to use UnityYAMLMerge:
+#   git config merge.unityyamlmerge.name "Unity SmartMerge (UnityYAMLMerge)"
+#   git config merge.unityyamlmerge.driver '"$(unity-path)" -projectPath "$(pwd)" -accept theirs -- "%O" "%A" "%B" -o "%A"'
+# Or set it in global/system Git config as preferred.
+*.unity           text eol=lf merge=unityyamlmerge
+*.prefab          text eol=lf merge=unityyamlmerge
+*.asset           text eol=lf merge=unityyamlmerge
+*.mat             text eol=lf merge=unityyamlmerge
+*.anim            text eol=lf merge=unityyamlmerge
+*.controller      text eol=lf merge=unityyamlmerge
+*.overrideController text eol=lf merge=unityyamlmerge
+*.timeline        text eol=lf merge=unityyamlmerge
+*.playable        text eol=lf merge=unityyamlmerge
+*.physicMaterial  text eol=lf merge=unityyamlmerge
+*.meta            text eol=lf merge=unityyamlmerge
+
+# Text/code files
+*.cs              text diff=csharp eol=lf
+*.shader          text eol=lf
+*.cginc           text eol=lf
+*.compute         text eol=lf
+*.hlsl            text eol=lf
+*.glsl            text eol=lf
+*.json            text eol=lf
+*.xml             text eol=lf
+*.yaml            text eol=lf
+*.yml             text eol=lf
+*.asmdef          text eol=lf
+*.asmref          text eol=lf
+*.md              text eol=lf
+*.txt             text eol=lf
+*.uxml            text eol=lf
+*.uss             text eol=lf
+
+# Binary assets
+*.png             binary
+*.jpg             binary
+*.jpeg            binary
+*.gif             binary
+*.tga             binary
+*.psd             binary
+*.svg             text  # SVG is XML; keep as text unless using LFS
+*.mp3             binary
+*.wav             binary
+*.ogg             binary
+*.mp4             binary
+*.mov             binary
+*.avi             binary
+*.fbx             binary
+*.blend           binary
+*.obj             text  # Wavefront OBJ is text; keep as text
+*.exr             binary
+*.hdr             binary
+*.ttf             binary
+*.otf             binary
+*.dll             binary
+*.so              binary
+*.dylib           binary
+*.a               binary
+*.zip             binary
+*.unitypackage    binary
+
+# Keep line endings consistent for shell/scripts
+*.sh              text eol=lf
+*.bat             text eol=crlf
+
