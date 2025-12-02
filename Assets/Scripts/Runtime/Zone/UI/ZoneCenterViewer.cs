@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Runtime.ObjectPooler;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Runtime.Zone.UI
 {
-    public class ZoneCenterViewer : MonoBehaviour
+    public class ZoneCenterViewer : MonoBehaviour, IPoolObject
     {
         [Header("References")]
         [SerializeField] private Image bgTarget;
@@ -16,11 +17,25 @@ namespace Runtime.Zone.UI
         [SerializeField] private ZoneCenterVisualData[] data;
         private Dictionary<ZoneType, ZoneCenterVisualData> _visualData;
 
-        public void SetZone(ref ZoneData zoneData)
+        public void SetZone(ZoneData zoneData)
         {
             bgTarget.sprite = _visualData[zoneData.type].background;
             orderTarget.SetText(zoneData.displayOrder.ToString());
             orderTarget.color = _visualData[zoneData.type].textColor;
+        }
+        
+        public void Release()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void Get()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Destroy()
+        {
         }
 
         void Awake()
@@ -30,9 +45,9 @@ namespace Runtime.Zone.UI
             
             _visualData = new Dictionary<ZoneType, ZoneCenterVisualData>();
             foreach (var visualData in data)
-            {
                 _visualData.Add(visualData.zoneType, visualData);
-            }
+            
+            data = null; // Unnecessary memory
         }
         
         void OnValidate()
@@ -57,7 +72,7 @@ namespace Runtime.Zone.UI
                 type = ZoneType.Gold,
             };
             
-            SetZone(ref e);
+            SetZone(e);
         }
         
         [ContextMenu("Set Regular")]
@@ -70,7 +85,7 @@ namespace Runtime.Zone.UI
                 type = ZoneType.Regular,
             };
             
-            SetZone(ref e);
+            SetZone(e);
         }
         
         [ContextMenu("Set Silver")]
@@ -83,7 +98,7 @@ namespace Runtime.Zone.UI
                 type = ZoneType.Silver,
             };
             
-            SetZone(ref e);
+            SetZone(e);
         }
 #endif
     }
