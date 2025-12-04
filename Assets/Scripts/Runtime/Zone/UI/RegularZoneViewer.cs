@@ -48,7 +48,6 @@ namespace Runtime.Zone.UI
         [Serializable]
         public class ZoneCenterVisualData
         {
-            public Sprite background;
             public Color textColor;
             public ZoneType zoneType;
         }

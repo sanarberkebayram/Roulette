@@ -131,7 +131,7 @@ namespace Runtime.Wheel.UI
         #endif
         
         [Serializable]
-        public class WheelVisualData // bigger than 15 byte, struct is unnecessary
+        public class WheelVisualData // bigger than 15 bytes, struct is unnecessary
         {
             public Sprite background;
             public Sprite indicator;

@@ -4,6 +4,7 @@ using Zenject;
 
 namespace Runtime.Zone
 {
+    [CreateAssetMenu(fileName = "ZoneInstaller", menuName = "Zone/Installer", order = 0)]
     public class ZoneInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private ZoneProvider provider;

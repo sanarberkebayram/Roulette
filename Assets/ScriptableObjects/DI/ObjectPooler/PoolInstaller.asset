@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc4fbf7ef674baab7911673423f41dc, type: 3}
+  m_Name: PoolInstaller
+  m_EditorClassIdentifier: 
+  settings:
+    defaultCapacity: 10
+    maxSize: 100
+  zoneViewer: {fileID: 2395294864083121216, guid: f5ef8e8bbddb645f18516e629794b48d, type: 3}
+  zoneCenterViewer: {fileID: 215663269197906409, guid: 011bf4db59395409fa6f0c19c5f7b567, type: 3}
+  rewardSlot: {fileID: 3513964393546969780, guid: d6c3ce84f6b7640d599379ff57319cdb, type: 3}
+  toggleButton: {fileID: 3337766192934515918, guid: bf3e0824f50b14161b5698708127bde5, type: 3}

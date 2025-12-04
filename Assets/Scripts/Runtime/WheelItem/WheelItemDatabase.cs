@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Runtime.WheelItem
@@ -9,6 +10,16 @@ namespace Runtime.WheelItem
         // Wheel Item can be Scriptable Object itself later
         // Its struct for ease of implementation
         [field: SerializeField] public WheelItem[] Items { get; private set; }
+        private Dictionary<string, WheelItem> _items;
+        
+        public WheelItem GetItem(string uuid) => _items[uuid];
+        
+        private void Awake()
+        {
+            _items = new Dictionary<string, WheelItem>();
+            foreach (var item in Items)
+                _items.Add(item.uuid, item);
+        }
 
         private void OnValidate()
         {
