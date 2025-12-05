@@ -13,8 +13,19 @@ namespace Runtime.WheelItem
         private Dictionary<string, WheelItem> _items;
         
         public WheelItem GetItem(string uuid) => _items[uuid];
+
+        public WheelItem GetBomb()
+        {
+            foreach (var item in Items)
+            {
+                if (item.type == WheelItemType.Bomb)
+                    return item;
+            }
+            
+            throw new Exception("No bomb found on Wheel Items");
+        }
         
-        private void Awake()
+        public void Initialize()
         {
             _items = new Dictionary<string, WheelItem>();
             foreach (var item in Items)

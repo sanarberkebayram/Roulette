@@ -15,7 +15,6 @@ namespace Runtime.Reward.UI
 
         private readonly Dictionary<string, RewardUISlot> _slots = new();
         
-        // RewardInfo is small, so no need to get with ref
         public void DisplayReward(RewardInfo info)
         {
             if (_slots.ContainsKey(info.uuid))

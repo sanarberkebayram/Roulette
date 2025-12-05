@@ -10,6 +10,7 @@ namespace Runtime.WheelItem
         
         public override void InstallBindings()
         {
+            database.Initialize();
             Container.Bind<WheelItemDatabase>().FromInstance(database).AsSingle();
         }
     }

@@ -33,6 +33,13 @@ namespace Runtime.Wheel.UI
             wheelIndicatorTarget.sprite = _visualData[zone].indicator;
         }
 
+        public void SetSlot(int index, string itemId, int count)
+        {
+            var slot = slots[index];
+            var item = _database.GetItem(itemId);
+            slot.SetItem(item.sprite, count);
+        }
+
         [ContextMenu("Animate Idle")]
         public void AnimateIdle()
         {

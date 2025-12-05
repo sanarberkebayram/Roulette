@@ -1,4 +1,3 @@
-using System.Data;
 using UnityEngine;
 
 namespace Runtime.Zone.Provider
@@ -8,7 +7,6 @@ namespace Runtime.Zone.Provider
     {
         [SerializeField] private int applyToEveryN = 5;
         [SerializeField] private ZoneType zoneType = ZoneType.Silver;
-        [SerializeField] private string[] specialItemIds;
         [SerializeField] private bool isClaimable;
         [SerializeField] private bool hasBomb;
         public override void Apply(ref ZoneData[] zoneData)
@@ -21,9 +19,6 @@ namespace Runtime.Zone.Provider
                 zoneData[i].isClaimable = isClaimable;
                 zoneData[i].hasBomb = hasBomb;
                 zoneData[i].isClaimable = isClaimable;
-                
-                if (specialItemIds is { Length: > 0 })
-                    zoneData[i].rewardId = specialItemIds[Random.Range(0, specialItemIds.Length)];
             }
         }
     }

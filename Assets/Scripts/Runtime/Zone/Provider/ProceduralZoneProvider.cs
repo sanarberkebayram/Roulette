@@ -5,7 +5,7 @@ namespace Runtime.Zone.Provider
     [CreateAssetMenu(fileName = "ProceduralZoneProvider", menuName = "Zone/Provider/Procedural", order = 0)]
     public class ProceduralZoneProvider : ZoneProvider
     {
-        [Range(1,60)][SerializeField] private int zoneCount = 60;
+        [SerializeField] private int zoneCount = 60;
         [SerializeField] private ZoneDataEffector[] effectors;
         
         public override ZoneData[] GetZones()
@@ -16,7 +16,6 @@ namespace Runtime.Zone.Provider
                 var zone = new ZoneData()
                 {
                     displayOrder = i + 1,
-                    rewardId = string.Empty,
                     type = ZoneType.Regular,
                     isClaimable = false,
                     hasBomb =  false,

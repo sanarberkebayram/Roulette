@@ -7,7 +7,6 @@ namespace Runtime.Zone
     {
         public int displayOrder;
         public ZoneType type;
-        public string rewardId;
         public bool isClaimable;
         public bool hasBomb;
     }

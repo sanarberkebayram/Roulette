@@ -13,6 +13,8 @@ namespace Runtime.Player
             Container.Bind<PlayerEconomy>()
                 .FromInstance(new PlayerEconomy(startAmount))
                 .AsSingle();
+            
+            Container.Bind<PlayerChoiceController>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

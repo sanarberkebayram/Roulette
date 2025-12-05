@@ -6,9 +6,14 @@ namespace Runtime.Zone
     public class ZoneController
     {
         public Action<ZoneData> OnNewZone;
-        public int Length => _zones.Length;
-        public int CurrentZoneIndex { get; private set; } = 0;
         [Inject] private readonly ZoneData[] _zones;
+        public int Length => _zones.Length;
+        private bool _hasZone = true;
+
+
+        public bool HasZone => _hasZone;
+        
+        public int CurrentZoneIndex { get; private set; } = 0;
 
         public bool TryGet(int index, out ZoneData data)
         {
@@ -23,11 +28,15 @@ namespace Runtime.Zone
 
         public void IncreaseZone()
         {
-            if (CurrentZoneIndex >= _zones.Length-1)
+            if (CurrentZoneIndex >= _zones.Length - 1)
+            {
+                _hasZone = false;
                 return;
+            }
+            
             CurrentZoneIndex++;
             TryGet(CurrentZoneIndex, out var data);
-            OnNewZone(data);
+            OnNewZone?.Invoke(data);
         }
         
         public void Reset()
