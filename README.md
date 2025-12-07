@@ -6,7 +6,7 @@ Roulette is a Unity 2021.3.45f2 prototype of a lane-based lucky wheel loop. The 
 ## Media
 - **Resolution checks** – Three captures document how the HUD anchors behave on common aspect ratios:  
   ![16:9 Test](16.9.png) (standard widescreen), ![20:9 Test](20.9.png) (tall mobile), and ![4:3 Test](4.3.png) (tablet). Reference them when changing safe areas or layout groups.
-- **Gameplay reference** – [demo.mp4](demo.mp4) records a full loop from prep to the bomb popup. Compare future pacing/FX changes against this clip to keep the experience consistent.
+
 
 ## Requirements
 - Unity **2021.3.45f2** (exact editor version from `ProjectSettings/ProjectVersion.txt`).
