@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Runtime.WheelItem;
+using Runtime.EventBus;
+using Runtime.Wheel;
 using Runtime.Zone;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Runtime.Wheel.UI
+namespace Runtime.Common.UI
 {
     public class WheelUI : MonoBehaviour
     {
@@ -21,11 +21,17 @@ namespace Runtime.Wheel.UI
         
         [Header("Settings")]
         [SerializeField] private WheelVisualData[] data;
-        [SerializeField] private WheelAnimSettings animSettings;
+        [SerializeField] private DoTweenSettings<float> idleAnimSettings;
+        [SerializeField] private DoTweenSettings<float> spinAnimSettings;
+        [SerializeField] private AnimationCurve spinCurve;
 
-        [HideInInspector] public UnityEvent onAnimationFinish;
-        [Inject] private WheelItemDatabase _database;
+        [Inject] private SceneEventBus _eventBus;
         private Dictionary<ZoneType, WheelVisualData> _visualData;
+
+        public Vector3 GetIndexPosition(int index)
+        {
+            return slots[index].transform.position;
+        }
 
         public void SetWheel(ZoneType zone)
         {
@@ -33,11 +39,10 @@ namespace Runtime.Wheel.UI
             wheelIndicatorTarget.sprite = _visualData[zone].indicator;
         }
 
-        public void SetSlot(int index, string itemId, int count)
+        public void SetSlot(int index, Sprite icon, string slotText)
         {
             var slot = slots[index];
-            var item = _database.GetItem(itemId);
-            slot.SetItem(item.sprite, count);
+            slot.SetItem(icon, slotText);
         }
 
         [ContextMenu("Animate Idle")]
@@ -45,10 +50,10 @@ namespace Runtime.Wheel.UI
         {
             StopAnimation();
             animationTarget.transform.DORotate(
-            animSettings.idleAngleAmount * Vector3.forward,
-                    animSettings.idleDuration
+            idleAnimSettings.target * Vector3.forward,
+                    idleAnimSettings.duration
                 )
-                .SetEase(animSettings.idleEase)
+                .SetEase(idleAnimSettings.ease)
                 .SetLoops(-1, LoopType.Incremental)
                 .SetRelative()
                 .SetLink(animationTarget);
@@ -57,29 +62,35 @@ namespace Runtime.Wheel.UI
         public void AnimateSpin(int index)
         {
             StopAnimation();
+            if (slots == null || slots.Length == 0)
+                return;
+
             var perSlotAngle = 360f / slots.Length;
-            var slotAngle = perSlotAngle * index * -1f;
+            var slotAngle = perSlotAngle * index;
+            var currentAngle = animationTarget.transform.rotation.eulerAngles.z;
+            var neededAngle = Mathf.DeltaAngle(currentAngle, slotAngle);
+            if (neededAngle < 0f)
+                neededAngle += 360f;
+
+            var minSpin = Mathf.Abs(spinAnimSettings.target);
+            if (minSpin <= 0f)
+                minSpin = 360f;
             
-            var neededAngle = slotAngle - animationTarget.transform.rotation.eulerAngles.z;
-            if (neededAngle > animSettings.spinMinAngle * -1f)
-            {
-                while (neededAngle > animSettings.spinMinAngle * -1f)
-                {
-                    neededAngle -= 360f;
-                }
-            }
+            var totalAngle = neededAngle;
+            while (totalAngle < minSpin)
+                totalAngle += 360f;
             
             animationTarget.transform.DORotate(
-                    neededAngle * Vector3.forward,
-                    animSettings.spinDuration
+                    totalAngle * Vector3.forward,
+                    spinAnimSettings.duration
                 )
                 .SetOptions(false)
                 .SetRelative(true)
-                .SetEase(animSettings.spinEase)
+                .SetEase(spinCurve)
                 .SetLink(animationTarget)
                 .OnComplete(() =>
                 {
-                    onAnimationFinish?.Invoke();
+                    _eventBus.Raise(new SpinFinishEvent());
                 });
         }
 
@@ -102,7 +113,6 @@ namespace Runtime.Wheel.UI
             foreach (var visualData in data)
                 _visualData.Add(visualData.zoneType, visualData);
             
-            data = null; // Unnecessary memory
         }
 
         void OnValidate()
@@ -138,7 +148,7 @@ namespace Runtime.Wheel.UI
         #endif
         
         [Serializable]
-        public class WheelVisualData // bigger than 15 bytes, struct is unnecessary
+        public class WheelVisualData
         {
             public Sprite background;
             public Sprite indicator;

@@ -1,0 +1,509 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb5ba9bade946a2b21cd553e6662420, type: 3}
+  m_Name: DirectRewarder
+  m_EditorClassIdentifier: 
+  spinData:
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 2
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 1
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 6
+  - rewards:
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 5
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 29
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    - uuid: 4a58cf5e-093b-4a29-98a8-a2d784dea36c
+      count: 50
+      isBomb: 0
+    winnerIndex: 0

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31fc683666c84ee68b9b6849c636dad1, type: 3}
   m_Name: ZoneInstaller
   m_EditorClassIdentifier: 
-  provider: {fileID: 11400000, guid: 57697764b61e341d9980ca47f5b67096, type: 2}
+  providerSo: {fileID: 11400000, guid: 57697764b61e341d9980ca47f5b67096, type: 2}

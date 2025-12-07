@@ -1,3 +1,4 @@
+using Runtime.EventBus;
 using UnityEngine;
 using Zenject;
 
@@ -5,27 +6,32 @@ namespace Runtime.Game
 {
     public class Game : MonoBehaviour
     {
-        [SerializeField] private int spinCost;
-        public int SpinCost => spinCost;
+        [Inject] private IStateManager _stateManager;
         
-        private IGameState _currentState;
-        
-        public void ChangeState(IGameState state)
-        {
-            _currentState?.OnExit();
-            _currentState = state;
-            _currentState.OnEnter();
-        }
-
+        [Inject] private StateType _startingState;
+        [Inject(Id = "spin_cost")] private int _spinCost;
+        [Inject] private SceneEventBus _eventBus;
+        public int SpinCost => _spinCost;
 
         void Start()
         {
-            ChangeState(StateLookup.PrepState);
+            _stateManager.ChangeState(_startingState);
         }
 
-        void Update()
+        void OnEnable()
         {
-            _currentState?.OnUpdate();
+            _eventBus.Subscribe<StateChangeEvent>(HandleStateChange);
+            transform.name = $"Game - State[{_stateManager.CurrentState}]";
+        }
+
+        void OnDisable()
+        {
+            _eventBus.Unsubscribe<StateChangeEvent>(HandleStateChange);
+        }
+
+        private void HandleStateChange(StateChangeEvent obj)
+        {
+            transform.name = $"Game - State[{obj.newState}]";
         }
     }
 }

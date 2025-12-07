@@ -47,7 +47,6 @@ namespace Runtime.Zone.UI
             foreach (var visualData in data)
                 _visualData.Add(visualData.zoneType, visualData);
             
-            data = null; // Unnecessary memory
         }
         
         void OnValidate()

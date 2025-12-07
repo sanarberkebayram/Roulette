@@ -1,19 +1,50 @@
 using System;
+using Runtime.EventBus;
+using Runtime.Player.Choice;
 using Zenject;
 
 namespace Runtime.Zone
 {
     public class ZoneController
     {
-        public Action<ZoneData> OnNewZone;
-        [Inject] private readonly ZoneData[] _zones;
-        public int Length => _zones.Length;
-        private bool _hasZone = true;
+        public ZoneData CurrentZone { get; private set; }
+        private readonly ZoneData[] _zones;
+        private readonly SceneEventBus _eventBus;
+        private int _currentZoneIndex;
+
+        public ZoneController(ZoneData[] zones, SceneEventBus eventBus)
+        {
+            _zones = zones;
+            _eventBus = eventBus;
+            _currentZoneIndex = 0;
+            CurrentZone = _zones[_currentZoneIndex];
+            
+            _eventBus.Subscribe<RestartEvent>(HandleRestart);
+        }
 
 
-        public bool HasZone => _hasZone;
-        
-        public int CurrentZoneIndex { get; private set; } = 0;
+        public bool CanIncreaseZone()
+        {
+            if (_zones == null || _zones.Length == 0)
+                return false;
+            
+            return _currentZoneIndex < _zones.Length-1;
+        }
+
+        public void IncreaseZone()
+        {
+            var oldZone = _currentZoneIndex >= 0 ? _zones[_currentZoneIndex] : default;
+            _currentZoneIndex++;
+            CurrentZone = _zones[_currentZoneIndex];
+            
+            _eventBus.Raise(
+                new ZoneChangeEvent()
+                {
+                    oldZone = oldZone,
+                    newZone = CurrentZone,
+                }
+            );
+        }
 
         public bool TryGet(int index, out ZoneData data)
         {
@@ -26,24 +57,11 @@ namespace Runtime.Zone
             return true;
         }
 
-        public void IncreaseZone()
+        private void HandleRestart(RestartEvent obj)
         {
-            if (CurrentZoneIndex >= _zones.Length - 1)
-            {
-                _hasZone = false;
-                return;
-            }
-            
-            CurrentZoneIndex++;
-            TryGet(CurrentZoneIndex, out var data);
-            OnNewZone?.Invoke(data);
-        }
-        
-        public void Reset()
-        {
-            CurrentZoneIndex = 0;
-            TryGet(CurrentZoneIndex, out var data);
-            OnNewZone?.Invoke(data);
+            _currentZoneIndex = 0;
+            CurrentZone = _zones[_currentZoneIndex];
+            _eventBus.Raise(new ZoneResetEvent());
         }
     }
 }

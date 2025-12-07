@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DefaultZoneProvider
   m_EditorClassIdentifier: 
   zoneCount: 60
-  effectors:
-  - {fileID: 11400000, guid: 87f25f2940dc2473a821db69514a4f19, type: 2}
+  effectorSo:
   - {fileID: 11400000, guid: be61ea20961e142f9b488fc84d97246f, type: 2}
+  - {fileID: 11400000, guid: 87f25f2940dc2473a821db69514a4f19, type: 2}

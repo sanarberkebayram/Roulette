@@ -1,4 +1,5 @@
 using System;
+using Runtime.EventBus;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -9,21 +10,21 @@ namespace Runtime.Player.UI
     {
         [SerializeField] private TextMeshProUGUI cashText;
         [Inject] private PlayerEconomy _economy;
+        [Inject] private SceneEventBus _eventBus;
 
-
-        private void HandleCashChange(int _, int current)
+        private void HandleCashChange(MoneyChangeEvent evt)
         {
-            cashText.SetText(current.ToString());
+            cashText.SetText(evt.currentValue.ToString());
         }
 
         private void OnEnable()
         {
             cashText.SetText(_economy.CashAmount.ToString());
-            _economy.OnCashChange += HandleCashChange;
+            _eventBus.Subscribe<MoneyChangeEvent>(HandleCashChange);
         }
         private void OnDisable()
         {
-            _economy.OnCashChange -= HandleCashChange;
+            _eventBus.Unsubscribe<MoneyChangeEvent>(HandleCashChange);
         }
 
         private void OnValidate()

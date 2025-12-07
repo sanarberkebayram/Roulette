@@ -1,3 +1,5 @@
+using Runtime.Reward.Strategy;
+using Runtime.Reward.UI;
 using UnityEngine;
 using Zenject;
 
@@ -6,31 +8,67 @@ namespace Runtime.Reward
     [CreateAssetMenu(fileName = "RewardInstaller", menuName = "Reward/Installer", order = 0)]
     public class RewardInstaller : ScriptableObjectInstaller
     {
-        [SerializeField] private RewardCountData[] rewardCountData;
+        [SerializeField] private RewardStrategyType strategyType = RewardStrategyType.Direct;
+        [SerializeField] private DirectRewardSo directProvider;
+        [SerializeField] private ProceduralRewardSo proceduralProvider;
+        [SerializeField] private float rewardMultiplier = 1;
+
+        [Header("Reward Animation")] 
+        [SerializeField] private float firstDistance;
+        
         public override void InstallBindings()
         {
-            Container.Bind<RewardInventory>().AsSingle();
-            Container.BindInstance(rewardCountData).AsSingle();
-            Container.Bind<RewardController>().AsSingle();
-        }
-        
-        #if UNITY_EDITOR
-        [ContextMenu("Generate Data Sample")]
-        void GenerateDataSample()
-        {
-            rewardCountData = new RewardCountData[60];
+            Container.Bind<RewardAnimator>().AsSingle().WithArguments(firstDistance);
+            Container.Bind<RewardUI>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<RewardInventory>()
+                .AsSingle()
+                .WithArguments("reward_inventory");            
             
-            for (int i = 0; i < 60; i++)
+            Container.Bind<RewardController>().AsSingle().WithArguments(rewardMultiplier);
+            switch (strategyType)
             {
-                rewardCountData[i] = new RewardCountData()
-                {
-                    zoneOrder = i + 1,
-                    regularItemCountInterval = new Vector2Int(1, 3 * ( i + 1)),
-                    silverItemCountInterval = new Vector2Int(1, 3 * ( i + 1)),
-                    goldItemCountInterval = new Vector2Int(1, 3 * ( i + 1)),
-                };
+                case RewardStrategyType.Direct:
+                    BindDirectStrategy();
+                    break;
+                case RewardStrategyType.Procedural:
+                    BindProceduralStrategy();
+                    break;
+                default:
+                    BindDirectStrategy();
+                    break;
             }
+
         }
-        #endif
+
+
+        void BindDirectStrategy()
+        {
+            if (directProvider == null)
+            {
+                Debug.LogError("Direct reward provider is not assigned.", this);
+                return;
+            }
+            
+            Container.Bind<SpinData[]>().FromInstance(directProvider.SpinData).AsSingle();
+            Container.Bind<IRewardStrategy>().To<DirectRewarder>().AsSingle();
+        }
+
+        void BindProceduralStrategy()
+        {
+            if (proceduralProvider == null)
+            {
+                Debug.LogError("Procedural reward provider is not assigned.", this);
+                return;
+            }
+
+            Container.Bind<ProceduralRewardSo>().FromInstance(proceduralProvider).AsSingle();
+            Container.Bind<IRewardStrategy>().To<ProceduralRewarder>().AsSingle();
+        }
+    }
+
+    public enum RewardStrategyType
+    {
+        Direct,
+        Procedural
     }
 }

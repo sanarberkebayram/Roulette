@@ -23,6 +23,7 @@ namespace Runtime.Zone.UI
         public void Release()
         {
             gameObject.SetActive(false);
+            transform.SetParent(null);
         }
 
         public void Get()

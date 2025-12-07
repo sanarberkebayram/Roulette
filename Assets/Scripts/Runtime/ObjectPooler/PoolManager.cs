@@ -34,5 +34,6 @@ namespace Runtime.ObjectPooler
             var pool = (ObjectPool<T>)poolObject;
             pool.Release(item);
         }
+
     }
 }

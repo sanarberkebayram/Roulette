@@ -6,14 +6,14 @@ namespace Util
 {
     public static class TweenUtil
     {
-        public static Tweener DORightPadding(this HorizontalLayoutGroup layout, int toValue, float duration)
+        public static Tweener DoRightPadding(this HorizontalLayoutGroup layout, int toValue, float duration)
         {
             var fromValue = layout.padding.right;
             Tweener t = DOTween.To(
                     () => (float)fromValue,
                     x =>
                     {
-                        int v = Mathf.RoundToInt(x);
+                        var v = Mathf.RoundToInt(x);
                         layout.padding.right = v;
                         LayoutRebuilder.MarkLayoutForRebuild((RectTransform)layout.transform);
                     },

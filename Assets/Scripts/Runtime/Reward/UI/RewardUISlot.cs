@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Runtime.Common;
 using Runtime.ObjectPooler;
 using TMPro;
 using UnityEngine;
@@ -11,15 +12,16 @@ namespace Runtime.Reward.UI
         [Header("Settings")]
         [SerializeField] private float animDur = .3f;
         [SerializeField] private Ease animEase = Ease.Linear;
+        [SerializeField] private DoTweenSettings animSettings;
         
         [Header("References")]
         [SerializeField] private Image itemTarget;
         [SerializeField] private TextMeshProUGUI countTarget;
 
-        public void SetItem(Sprite item, int count)
+        public void SetItem(SlotVisualData data)
         {
-            itemTarget.sprite = item;
-            countTarget.text = count.ToString();
+            itemTarget.sprite = data.icon;
+            countTarget.SetText(data.slotText);
         }
 
         public void UpdateCount(int amount)

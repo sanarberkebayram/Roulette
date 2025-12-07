@@ -188,8 +188,8 @@ MonoBehaviour:
   data:
   - textColor: {r: 1, g: 1, b: 1, a: 1}
     zoneType: 0
-  - textColor: {r: 0.57254905, g: 0.7607843, b: 0.3647059, a: 1}
+  - textColor: {r: 0.55676943, g: 0.8773585, b: 0.2027857, a: 1}
     zoneType: 1
-  - textColor: {r: 0.7294118, g: 0.92156863, b: 1, a: 1}
+  - textColor: {r: 0.3820755, g: 0.8208915, b: 1, a: 1}
     zoneType: 2
   orderTarget: {fileID: 2395294862581771391}

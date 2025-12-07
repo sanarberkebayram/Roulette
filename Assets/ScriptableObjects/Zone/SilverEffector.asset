@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applyToEveryN: 3
   zoneType: 1
-  specialItemIds: []
   isClaimable: 1
   hasBomb: 0
+  rewardMultiplier: 1.5

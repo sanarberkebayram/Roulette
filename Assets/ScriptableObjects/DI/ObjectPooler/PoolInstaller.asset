@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoolInstaller
   m_EditorClassIdentifier: 
   settings:
-    defaultCapacity: 10
+    defaultCapacity: 30
     maxSize: 100
   zoneViewer: {fileID: 2395294864083121216, guid: f5ef8e8bbddb645f18516e629794b48d, type: 3}
   zoneCenterViewer: {fileID: 215663269197906409, guid: 011bf4db59395409fa6f0c19c5f7b567, type: 3}

@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Runtime.Zone.Provider
 {
-    [CreateAssetMenu(fileName = "DirectZoneProvider", menuName = "Zone/Provider/Direct", order = 0)]
-    public class DirectZoneProvider : ZoneProvider
+    [CreateAssetMenu(fileName = "DirectZoneProvider", menuName = "Zone/Providers/Direct", order = 0)]
+    public class DirectZoneProvider : ScriptableObject, IZoneProvider
     {
         [SerializeField] private ZoneData[] zones;
 
-        public override ZoneData[] GetZones()
+        public ZoneData[] GetZones()
             => zones;
     }
 }

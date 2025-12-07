@@ -20,17 +20,22 @@ namespace Runtime.Zone.UI
         [SerializeField] private HorizontalLayoutGroup layout;
 
         [Inject] private PoolManager _pool;
-        private Queue<RegularZoneViewer> _viewers;
+        private Queue<RegularZoneViewer> _viewers = new();
 
 
-        public void Display(ZoneData zone, bool silent = false)
+        public void Display(ZoneData? zone, bool silent = false)
         {
             CompleteAnimation();
+            if (zone == null)
+            {
+                AnimatePanel();
+                return;
+            }
             
             if (_viewers.Count >= maxViewers)
                 PruneQueue();
 
-            SpawnViewer(ref zone);
+            SpawnViewer(zone.Value);
             if (silent)
                 return;
             
@@ -49,14 +54,15 @@ namespace Runtime.Zone.UI
             var go = layout.gameObject;
             
             var totalOffset = animSettings.offset + layout.spacing;
-            layout.padding.right =   (int) -totalOffset;
+            layout.padding.right -=   (int) totalOffset;
             
-            layout.DORightPadding(0, animSettings.duration)
+            layout.DoRightPadding((int)totalOffset, animSettings.duration)
+                .SetRelative(true)
                 .SetEase(animSettings.ease)
                 .SetLink(go);
         }
 
-        void SpawnViewer(ref ZoneData zone)
+        void SpawnViewer(ZoneData zone)
         {
             var viewer = _pool.Get<RegularZoneViewer>();
             viewer.transform.SetParent(prefabParent);
@@ -79,8 +85,6 @@ namespace Runtime.Zone.UI
             _pool.Release(viewer);
         }
 
-        private void Awake() => _viewers = new Queue<RegularZoneViewer>(maxViewers);
-        
         #if UNITY_EDITOR
         
         [ContextMenu("Try Display")]

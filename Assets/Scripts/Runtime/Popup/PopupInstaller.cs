@@ -7,6 +7,7 @@ namespace Runtime.Popup
         public override void InstallBindings()
         {
             Container.Bind<BombPopup>().FromComponentInHierarchy(true).AsSingle();
+            Container.Bind<ClaimPopup>().FromComponentInHierarchy(true).AsSingle();
         }
     }
 }

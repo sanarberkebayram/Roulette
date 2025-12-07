@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4a14a992574b9cb02eddb95a967346, type: 3}
+  m_Name: ProceduralRewarder
+  m_EditorClassIdentifier: 
+  zoneProviderSo: {fileID: 11400000, guid: 57697764b61e341d9980ca47f5b67096, type: 2}
+  itemDatabase: {fileID: 11400000, guid: 84919821ad6654346a217a0f54c5b108, type: 2}
+  slotsPerSpin: 8
+  bombSettings:
+    item:
+      uuid: bomb
+      name: bomb
+      sprite: {fileID: 21300000, guid: b077d001799714abdac5e246542dcfb4, type: 3}
+      itemType: 0
+    bombCount: 0
+  regularPool:
+    rewardCountRange: {x: 20, y: 50}
+  silverPool:
+    rewardCountRange: {x: 5, y: 10}
+  goldPool:
+    rewardCountRange: {x: 1, y: 3}
+  regularZoneDistribution:
+    itemTypes:
+    - itemType: 0
+      weight: 0.9
+    - itemType: 1
+      weight: 0.1
+    - itemType: 2
+      weight: 0
+  silverZoneDistribution:
+    itemTypes:
+    - itemType: 0
+      weight: 0.69
+    - itemType: 1
+      weight: 0.3
+    - itemType: 1
+      weight: 0.01
+  goldZoneDistribution:
+    itemTypes:
+    - itemType: 0
+      weight: 0.2
+    - itemType: 1
+      weight: 0.6
+    - itemType: 2
+      weight: 0.2

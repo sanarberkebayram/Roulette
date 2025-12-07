@@ -2,17 +2,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Runtime.Wheel.UI
+namespace Runtime.Common.UI
 {
     public class WheelUISlot : MonoBehaviour
     {
         [SerializeField] private Image itemTarget;
         [SerializeField] private TextMeshProUGUI countTarget;
 
-        public void SetItem(Sprite item, int count)
+        public void SetItem(Sprite icon, string slotText)
         {
-            itemTarget.sprite = item;
-            countTarget.text = count.ToString();
+            itemTarget.sprite = icon;
+            countTarget.SetText(slotText);
         }
         
         void OnValidate()

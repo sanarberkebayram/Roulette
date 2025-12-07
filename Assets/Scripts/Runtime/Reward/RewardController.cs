@@ -1,124 +1,57 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Runtime.WheelItem;
+using Runtime.EventBus;
+using Runtime.Player.Choice;
+using Runtime.Reward.Strategy;
 using Runtime.Zone;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Runtime.Reward
 {
     public class RewardController
     {
-        private readonly RewardCountData[] _data;
-        private readonly ZoneController _zoneController;
-        private readonly WheelItemDatabase _wheelItemDatabase;
+        private readonly IRewardStrategy _strategy;
+        private readonly float _initialMultiplier;
         
-        public RewardController(RewardCountData[] data, ZoneController zoneController, WheelItemDatabase wheelItemDatabase)
+        private float _rewardMultiplier;
+        public SpinData CurrentSpin { get; private set; }
+        
+        public RewardController(IRewardStrategy strategy, float rewardMultiplier, ZoneController zoneController, SceneEventBus eventBus)
         {
-            _data = data;
-            _zoneController = zoneController;
-            _wheelItemDatabase = wheelItemDatabase;
+            _strategy = strategy;
+            _rewardMultiplier = rewardMultiplier;
+            _initialMultiplier = rewardMultiplier;
+
+            _rewardMultiplier *= zoneController.CurrentZone.rewardMultiplier;
+            eventBus.Subscribe<ZoneChangeEvent>(HandleZoneChange);
+            eventBus.Subscribe<RestartEvent>(HandleRestart);
         }
 
-        public SpinInfo GetSpinInfo()
+
+        public SpinData GetSpinData()
         {
-            if (!_zoneController.TryGet(_zoneController.CurrentZoneIndex,out var zone))
-                throw new Exception("No zone found");
-
-            var rewards = GetZoneRewards(zone);
-            var winner = Random.Range(0, rewards.Length);
-            
-            return new SpinInfo()
-            {
-                rewards = rewards,
-                winnerIndex = winner,
-                bombExploded = winner == 0
-            };
-        }
-
-        RewardInfo[] GetZoneRewards(ZoneData zone)
-        {
-            var result = new List<RewardInfo>();
-            if (zone.hasBomb)
-            {
-                result.Add(new RewardInfo()
-                {
-                    amount = 0 ,
-                    uuid = _wheelItemDatabase.GetBomb().uuid
-                });
-            }
-
-            var addCount = zone.hasBomb ? 7 : 8;
-            for (var i = 0; i < addCount; i++)
-            {
-                var item = GetRandomItemByType(zone.type);
-                result.Add(
-                    new RewardInfo()
-                    {
-                        amount = GetRewardCount(zone.displayOrder, item.type),
-                        uuid = item.uuid
-                    }
-                );
-            }
-            return result.ToArray();
-        }
-
-        private WheelItem.WheelItem GetRandomItemByType(ZoneType zoneType)
-        {
-            WheelItem.WheelItem[] arr;
-            Debug.Log(zoneType);
-            switch (zoneType)
-            {
-                case ZoneType.Regular:
-                    arr = _wheelItemDatabase.Items.Where(
-                        item => item.type == WheelItemType.Regular 
-                                || item.type == WheelItemType.Silver)
-                        .ToArray();
-                    break;
-                case ZoneType.Silver:
-                    arr = _wheelItemDatabase.Items.Where(
-                            item => item.type == WheelItemType.Silver 
-                                    || item.type == WheelItemType.Regular || item.type == WheelItemType.Gold)
-                        .ToArray();
-                    break;
-                case ZoneType.Gold:
-                    arr = _wheelItemDatabase.Items.Where(
-                            item => item.type == WheelItemType.Silver 
-                                    || item.type == WheelItemType.Gold)
-                        .ToArray();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(zoneType), zoneType, null);
-            }
-            
-            return arr[Random.Range(0, arr.Length)];
+            var data = _strategy.GetSpinData();
+            ApplyMultiplier(ref data);
+            CurrentSpin = data;
+            return data;
         }
         
-        private int GetRewardCount(int zoneOrder, WheelItemType itemType)
+        private void HandleRestart(RestartEvent obj)
         {
-            var data = _data[zoneOrder];
-            Vector2Int interval;
-            switch (itemType)
+            _rewardMultiplier = _initialMultiplier;
+        }
+        
+        private void HandleZoneChange(ZoneChangeEvent obj)
+        {
+            _rewardMultiplier *= obj.newZone.rewardMultiplier;
+        }
+
+        private void ApplyMultiplier(ref SpinData data)
+        {
+            for (var i = 0; i < data.rewards.Length; i++)
             {
-                case WheelItemType.Bomb:
-                    interval = Vector2Int.zero;
-                    break;
-                case WheelItemType.Regular:
-                    interval = data.regularItemCountInterval;
-                    break;
-                case WheelItemType.Silver:
-                    interval = data.silverItemCountInterval;
-                    break;
-                case WheelItemType.Gold:
-                    interval = data.goldItemCountInterval;
-                    break;
-                default:
-                    interval = Vector2Int.zero;
-                    break;
+                if (data.rewards[i].isBomb)
+                    continue;
+
+                data.rewards[i].count = (int)(_rewardMultiplier * data.rewards[i].count);
             }
-            
-            return Random.Range(interval.x, interval.y + 1);
         }
     }
 }
